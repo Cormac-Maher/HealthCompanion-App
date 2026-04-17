@@ -1,20 +1,49 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Wellness Companion</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- Overall Score -->
+  <div class="score-card">
+    <h2>Overall Score</h2>
+    <p class="big-score">{{ overallScore }}</p>
   </div>
+
+  <!-- Daily Quote -->
+  <div class="quote-card">
+    <h3>Quote of the Day</h3>
+    <p>{{ quote }}</p>
+    <p><strong>- {{ author }}</strong></p>
+  </div>
+
+  <!-- Today's Category Scores -->
+  <h3>Today's Scores</h3>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Diet</ion-label>
+      <ion-badge slot="end">{{ dietScore }}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sleep</ion-label>
+      <ion-badge slot="end">{{ sleepScore }}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mood</ion-label>
+      <ion-badge slot="end">{{ moodScore }}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Exercise</ion-label>
+      <ion-badge slot="end">{{ exerciseScore }}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hydration</ion-label>
+      <ion-badge slot="end">{{ hydrationScore }}</ion-badge>
+    </ion-item>
+  </ion-list>
+
+
 </ion-content>
