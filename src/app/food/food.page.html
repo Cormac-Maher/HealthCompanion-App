@@ -1,13 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>food</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Diet Tracker</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">food</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <h2>How many of your 5 a day have you had?</h2>
+
+  <p>You have had {{ portions }} out of 5 today.</p>
+
+  <ion-item>
+    <ion-label>Portions: {{ portions }}</ion-label>
+    <ion-range [(ngModel)]="portions" min="0" max="5" step="1" snaps="true" pin="true"></ion-range>
+  </ion-item>
+
+  <ion-button (click)="save()">Save</ion-button>
+
+
 </ion-content>

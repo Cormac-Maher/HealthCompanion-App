@@ -1,13 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>sleep</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sleep Tracker</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sleep</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <h2>How many hours of sleep did you get?</h2>
+
+  <p>You slept {{ hours }} hours last night.</p>
+
+  <p If="hours >= 8">Great sleep! 😴</p>
+  <p If="hours > 0 && hours < 8">Try to aim for 8 hours. 💤</p>
+
+  <ion-item>
+    <ion-label>Hours: {{ hours }}</ion-label>
+    <ion-range [(ngModel)]="hours" min="0" max="10" step="1" snaps="true" pin="true"></ion-range>
+  </ion-item>
+
+  <ion-button expand="block" (click)="save()">Save</ion-button>
+
+  <p>{{ message }}</p>
+
 </ion-content>

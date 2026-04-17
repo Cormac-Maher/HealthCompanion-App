@@ -1,20 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonLabel, IonRange, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { StorageService } from '../services/storage';
 
 @Component({
   selector: 'app-sleep',
   templateUrl: './sleep.page.html',
   styleUrls: ['./sleep.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonLabel, IonRange, IonBackButton, IonButtons]
 })
 export class SleepPage implements OnInit {
 
-  constructor() { }
+  hours: number = 0;
+  message: string = '';
 
-  ngOnInit() {
+  constructor(private storageService: StorageService) {}
+
+  async ngOnInit() {
+    const saved = await this.storageService.load('sleepHours');
+    if (saved != null) {
+      this.hours = saved;
+    }
+  }
+
+  async save() {
+    await this.storageService.save('sleepHours', this.hours);
+    this.message = 'Saved!';
   }
 
 }

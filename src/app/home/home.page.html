@@ -6,26 +6,23 @@
 
 <ion-content>
 
-  <!-- Overall Score -->
   <div class="score-card">
     <h2>Overall Score</h2>
     <p class="big-score">{{ overallScore }}</p>
   </div>
 
-  <!-- Daily Quote -->
   <div class="quote-card">
     <h3>Quote of the Day</h3>
     <p>{{ quote }}</p>
     <p><strong>- {{ author }}</strong></p>
   </div>
 
-  <!-- Today's Category Scores -->
   <h3>Today's Scores</h3>
 
   <ion-list>
     <ion-item>
       <ion-label>Diet</ion-label>
-      <ion-badge slot="end">{{ dietScore }}</ion-badge>
+      <ion-badge slot="end">{{ fiveADay }}</ion-badge>
     </ion-item>
     <ion-item>
       <ion-label>Sleep</ion-label>
@@ -44,6 +41,5 @@
       <ion-badge slot="end">{{ hydrationScore }}</ion-badge>
     </ion-item>
   </ion-list>
-
 
 </ion-content>
