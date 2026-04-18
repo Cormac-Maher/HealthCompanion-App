@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { StorageService } from '../services/storage';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
-
+import { NetworkService } from '../services/network';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -23,15 +23,20 @@ author: string = '';
   hydrationScore: number = 0;
   overallScore: number = 0;
 
-  constructor(private quoteServices: QuotesService, private storageServices: StorageService, private router: Router) {}
+  constructor(private quoteServices: QuotesService, private networkService: NetworkService, private storageServices: StorageService, private router: Router) {}
 
-  ngOnInit() {
+async ngOnInit() {
+  const online = await this.networkService.isOnline();
+  if (online) {
     this.quoteServices.getQuote().subscribe((data: any) => {
-          console.log(data);  
       this.quote = data.quote;
       this.author = data.author;
     });
+  } else {
+    this.quote = 'No internet connection available.';
+    this.author = '';
   }
+}
 
   goTo(page: string) {
     this.router.navigate([page]);
