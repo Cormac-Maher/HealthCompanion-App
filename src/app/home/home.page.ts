@@ -3,12 +3,14 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, Io
 import { QuotesService } from '../services/quotes';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../services/storage';
+import { Router } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonList, IonItem, IonBadge, IonLabel],
+  imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonItem, IonBadge, IonLabel],
 })
 export class HomePage implements OnInit{
   quote: string = 'Loading';
@@ -21,7 +23,7 @@ author: string = '';
   hydrationScore: number = 0;
   overallScore: number = 0;
 
-  constructor(private quoteServices: QuotesService, private storageServices: StorageService) {}
+  constructor(private quoteServices: QuotesService, private storageServices: StorageService, private router: Router) {}
 
   ngOnInit() {
     this.quoteServices.getQuote().subscribe((data: any) => {
@@ -31,11 +33,31 @@ author: string = '';
     });
   }
 
+  goTo(page: string) {
+    this.router.navigate([page]);
+  }
+
+  async reset() {
+    this.fiveADay = 0;
+    this.sleepScore = 0;
+    this.moodScore = 0;
+    this.exerciseScore = 0;
+    this.hydrationScore = 0;
+    this.overallScore = 0;
+
+    await this.storageServices.save('fiveADay', 0);
+    await this.storageServices.save('sleepHours', 0);
+    await this.storageServices.save('moodScore', 0);
+    await this.storageServices.save('exerciseScore', 0);
+    await this.storageServices.save('exercised', false);
+    await this.storageServices.save('cups', 0);
+  }
+
     async ionViewWillEnter() {
     const saved = await this.storageServices.load('fiveADay');
     if (saved != null) {
       this.fiveADay = saved;
-}
+    }
     const savedSleep = await this.storageServices.load('sleepHours');
       if (savedSleep != null) 
         {
@@ -51,14 +73,37 @@ author: string = '';
           this.sleepScore = 1;
         else
           this.sleepScore = 0;
-
         }
+
+      const savedMood = await this.storageServices.load('moodScore');
+      if (savedMood != null) { this.moodScore = savedMood; }
+
+      const savedExercise = await this.storageServices.load('exerciseScore');
+      if (savedExercise != null) { this.exerciseScore = savedExercise; }
+
+      const savedCups = await this.storageServices.load('cups');
+      if (savedCups != null) { this.hydrationScore = savedCups; }
+
+      if (savedCups >= 12)
+        this.hydrationScore = 5;
+      else if (savedCups >= 10)
+        this.hydrationScore = 4;
+      else if (savedCups >= 8)
+        this.hydrationScore = 3;
+      else if (savedCups >= 6)
+        this.hydrationScore = 2;
+      else if (savedCups >= 4)
+        this.hydrationScore = 1;
+      else if (savedCups < 4)
+        this.hydrationScore = 0;      
+
+      this.calculateOverall();
     }
   
 
   calculateOverall() {
     this.overallScore = 
-    (this.fiveADay + this.sleepScore + this.moodScore + this.exerciseScore + this.hydrationScore) / 5;
+    (this.fiveADay + this.sleepScore + this.moodScore + this.exerciseScore + this.hydrationScore) * 4;
   }
 
 }

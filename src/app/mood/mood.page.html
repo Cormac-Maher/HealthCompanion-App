@@ -1,13 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>mood</ion-title>
+    <ion-buttons slot="start">
+  <ion-back-button defaultHref="/home"></ion-back-button>
+</ion-buttons>
+    <ion-title>Mood</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mood</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <h2>How are you feeling today?</h2>
+
+  <ion-radio-group [(ngModel)]="moodScore">
+
+    <ion-item>
+      <ion-label>5 - Excellent 😄</ion-label>
+      <ion-radio slot="end" [value]="5"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>4 - Good 🙂</ion-label>
+      <ion-radio slot="end" [value]="4"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>3 - Okay 😐</ion-label>
+      <ion-radio slot="end" [value]="3"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>2 - Low 😔</ion-label>
+      <ion-radio slot="end" [value]="2"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>1 - Very Sad 😢</ion-label>
+      <ion-radio slot="end" [value]="1"></ion-radio>
+    </ion-item>
+
+  </ion-radio-group>
+
+  <p>Your mood score: {{ moodScore }}</p>
+
+  <ion-button expand="block" (click)="save()">Save</ion-button>
+
+  <p>{{ message }}</p>
+
 </ion-content>

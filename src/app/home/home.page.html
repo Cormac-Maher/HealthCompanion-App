@@ -1,14 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Wellness Companion</ion-title>
+    <ion-title>Health Companion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="score-card">
-    <h2>Overall Score</h2>
-    <p class="big-score">{{ overallScore }}</p>
+    <div class="score-section">
+
+    <div class="score-circle">
+      <span class="score-number">{{ overallScore | number:'1.0-0' }}</span>
+    </div>
+
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" [style.width.%]="(overallScore)"></div>
+    </div>
+
+    @if (overallScore >= 80) {
+      <p class="score-message">You're having a great day!</p>
+    }
+    @if (overallScore >= 60 && overallScore < 80) {
+      <p class="score-message">Keep it up, doing well!</p>
+    }
+    @if (overallScore >= 40 && overallScore < 60) {
+      <p class="score-message">Not bad, room to improve!</p>
+    }
+    @if (overallScore > 0 && overallScore < 40) {
+      <p class="score-message">Let's get those numbers up!</p>
+    }
+    @if (overallScore === 0) {
+      <p class="score-message">Start tracking to see your score!</p>
+    }
+
   </div>
 
   <div class="quote-card">
@@ -17,29 +40,40 @@
     <p><strong>- {{ author }}</strong></p>
   </div>
 
-  <h3>Today's Scores</h3>
+<div class="scores-section">
+  <h3 class="section-title">Today's Scores</h3>
 
-  <ion-list>
-    <ion-item>
-      <ion-label>Diet</ion-label>
-      <ion-badge slot="end">{{ fiveADay }}</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-label>Sleep</ion-label>
-      <ion-badge slot="end">{{ sleepScore }}</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-label>Mood</ion-label>
-      <ion-badge slot="end">{{ moodScore }}</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-label>Exercise</ion-label>
-      <ion-badge slot="end">{{ exerciseScore }}</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-label>Hydration</ion-label>
-      <ion-badge slot="end">{{ hydrationScore }}</ion-badge>
-    </ion-item>
-  </ion-list>
+  <div class="score-grid">
 
+    <div class="score-tile" (click)="goTo('/food')">
+      <span class="tile-label">Diet</span>
+      <span class="tile-score">{{ fiveADay }}<span class="tile-max">/5</span></span>
+    </div>
+
+    <div class="score-tile" (click)="goTo('/sleep')">
+      <span class="tile-label">Sleep</span>
+      <span class="tile-score">{{ sleepScore }}<span class="tile-max">/5</span></span>
+    </div>
+
+    <div class="score-tile" (click)="goTo('/mood')">
+      <span class="tile-label">Mood</span>
+      <span class="tile-score">{{ moodScore }}<span class="tile-max">/5</span></span>
+    </div>
+
+    <div class="score-tile" (click)="goTo('/exercise')">
+      <span class="tile-label">Exercise</span>
+      <span class="tile-score">{{ exerciseScore }}<span class="tile-max">/5</span></span>
+    </div>
+
+    <div class="score-tile" (click)="goTo('/hydration')">
+      <span class="tile-label">Hydration</span>
+      <span class="tile-score">{{ hydrationScore }}<span class="tile-max">/5</span></span>
+    </div>
+
+    <div class="score-tile reset-tile" (click)="reset()">
+      <span class="tile-score" style="font-size: 1rem; color: #e53935;">Clear All</span>
+    </div>
+
+  </div>
+</div>
 </ion-content>

@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>exercise</ion-title>
+  <ion-buttons slot="start">
+  <ion-back-button defaultHref="/home">
+  </ion-back-button>
+    <ion-title>Exercise</ion-title>
+
+</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">exercise</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <h2>Did you exercise today?</h2>
+
+  <ion-item>
+    <ion-label>I exercised today</ion-label>
+    <ion-checkbox [checked]="exercised" (ionChange)="onCheckboxChange($event)"></ion-checkbox>
+  </ion-item>
+
+
+@if (exercised) {
+  <ion-item>
+    <ion-label>Type of exercise</ion-label>
+    <ion-select [(ngModel)]="exerciseType" placeholder="Select type">
+      <ion-select-option value="cardio">Cardio</ion-select-option>
+      <ion-select-option value="weightlifting">Weightlifting</ion-select-option>
+      <ion-select-option value="hiit">HIIT</ion-select-option>
+      <ion-select-option value="swimming">Swimming</ion-select-option>
+    </ion-select>
+  </ion-item>
+}
+
+  <p>Exercise score: {{ exerciseScore }} / 5</p>
+
+  <ion-button expand="block" (click)="save()">Save</ion-button>
+
+  <p>{{ message }}</p>
+
 </ion-content>

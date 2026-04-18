@@ -10,11 +10,9 @@
 <ion-content class="ion-padding">
 
   <h2>How many hours of sleep did you get?</h2>
+  <p>Try to aim for 8 hours.</p>
 
   <p>You slept {{ hours }} hours last night.</p>
-
-  <p If="hours >= 8">Great sleep! 😴</p>
-  <p If="hours > 0 && hours < 8">Try to aim for 8 hours. 💤</p>
 
   <ion-item>
     <ion-label>Hours: {{ hours }}</ion-label>

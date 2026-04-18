@@ -25,3 +25,146 @@
 #container a {
   text-decoration: none;
 }
+
+.score-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 20px;
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+}
+
+.score-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+}
+
+.score-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a73e8;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+.progress-bar-container {
+  width: 80%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: white;
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+.score-message {
+  color: white;
+  font-size: 1rem;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.quote-card {
+  margin: 16px;
+  padding: 16px;
+  background: var(--ion-color-light);
+  border-radius: 12px;
+  border-left: 4px solid #1a73e8;
+}
+
+.quote-text {
+  margin: 0 0 8px;
+  color: var(--ion-color-dark);
+  font-size: 0.95rem;
+}
+
+.quote-author {
+  margin: 0;
+  color: #888;
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.scores-section {
+  margin: 0 16px;
+}
+
+.section-title {
+  font-weight: 600;
+  color: var(--ion-color-dark);
+  margin: 16px 0 8px;
+}
+
+.nav-section {
+  padding: 0 16px 32px;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+.score-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ion-color-light);
+  border-radius: 16px;
+  padding: 16px 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.score-tile:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tile-emoji {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.tile-label {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tile-score {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ion-color-dark);
+}
+
+.tile-max {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #aaa;
+}
