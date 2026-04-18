@@ -6,7 +6,7 @@
 
 <ion-content>
 
-    <div class="score-section">
+    <div class="score-section" [style.background]="getScoreColour()">
 
     <div class="score-circle">
       <span class="score-number">{{ overallScore | number:'1.0-0' }}</span>
@@ -17,16 +17,16 @@
     </div>
 
     @if (overallScore >= 80) {
-      <p class="score-message">You're having a great day!</p>
+      <p class="score-message">You're having a great day</p>
     }
     @if (overallScore >= 60 && overallScore < 80) {
-      <p class="score-message">Keep it up, doing well!</p>
+      <p class="score-message">Keep it up, you are doing well</p>
     }
     @if (overallScore >= 40 && overallScore < 60) {
-      <p class="score-message">Not bad, room to improve!</p>
+      <p class="score-message">Not bad</p>
     }
     @if (overallScore > 0 && overallScore < 40) {
-      <p class="score-message">Let's get those numbers up!</p>
+      <p class="score-message">Let's get those numbers up</p>
     }
     @if (overallScore === 0) {
       <p class="score-message">Start tracking to see your score!</p>

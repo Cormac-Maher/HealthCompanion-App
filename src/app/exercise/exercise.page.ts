@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonRadio, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonRadio, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons, IonCardTitle } from '@ionic/angular/standalone';
 import { StorageService } from '../services/storage';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.page.html',
   styleUrls: ['./exercise.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons, IonCardTitle]
 })
 export class ExercisePage implements OnInit {
 

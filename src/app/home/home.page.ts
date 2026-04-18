@@ -10,7 +10,7 @@ import { NetworkService } from '../services/network';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonItem, IonBadge, IonLabel],
+  imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class HomePage implements OnInit{
   quote: string = 'Loading';
@@ -104,7 +104,15 @@ async ngOnInit() {
 
       this.calculateOverall();
     }
-  
+
+    getScoreColour(): string {
+      if (this.overallScore >= 80) return '#0bdc1c';
+      if (this.overallScore >= 60) return '#f9ed3f';
+      if (this.overallScore >= 40) return '#ff6f00';
+      if (this.overallScore < 40) return '#f32424';
+      return '#c62828';
+    }
+
 
   calculateOverall() {
     this.overallScore = 
