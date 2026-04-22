@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonRadio, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons, IonCardTitle } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonRadio, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons, IonCardTitle, IonCard, IonCardContent, IonCardHeader } from '@ionic/angular/standalone';
 import { StorageService } from '../services/storage';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.page.html',
   styleUrls: ['./exercise.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons, IonCardTitle]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonButton, IonSelectOption, IonCheckbox, IonBackButton, IonButtons, IonCardTitle, IonCard, IonCardContent, IonCardHeader]
 })
 export class ExercisePage implements OnInit {
 
@@ -17,7 +19,7 @@ export class ExercisePage implements OnInit {
   exerciseScore: number = 0;
   message: string = '';
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService, private router: Router) {}
 
   async ngOnInit() {
     const savedExercised = await this.storageService.load('exercised');
@@ -41,6 +43,7 @@ onCheckboxChange(event: any) {
     await this.storageService.save('exercised', this.exercised);
     await this.storageService.save('exerciseType', this.exerciseType);
     await this.storageService.save('exerciseScore', this.exerciseScore);
-    this.message = 'Saved!';
+    this.router.navigate(['/home']);
   }
+
 }

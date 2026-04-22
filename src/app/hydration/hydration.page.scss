@@ -1,0 +1,67 @@
+.page-header {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  padding: 24px 20px;
+  text-align: center;
+  color: white;
+}
+
+.page-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: white;
+}
+
+.page-header p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.85;
+  color: white;
+}
+
+.tracker-card {
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cups-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0 16px;
+}
+
+.cups-number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #1a73e8;
+  line-height: 1;
+  min-width: 80px;
+  text-align: center;
+}
+
+.cups-label {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  padding-bottom: 16px;
+}
+
+.save-button {
+  margin: 16px;
+}
+
+.tips-card {
+  margin: 0 16px 32px;
+  border-radius: 16px;
+  border-left: 4px solid #1a73e8;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tips-card p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: #555;
+}

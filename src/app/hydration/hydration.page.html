@@ -3,32 +3,43 @@
     <ion-buttons slot="start">
   <ion-back-button defaultHref="/home"></ion-back-button>
 </ion-buttons>
-    <ion-title>Hydration</ion-title>
+    <ion-title>Hydration Tracker</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <h2>How many cups of water have you had today?</h2>
+<ion-content>
 
-  <p>The recommended daily intake is 12 cups of water.</p>
-
-  <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0;">
-    <ion-button (click)="decrease()">-</ion-button>
-    <h1 style="margin: 0; font-size: 3rem;">{{ cups }}</h1>
-    <ion-button (click)="increase()">+</ion-button>
+  <div class="page-header">
+    <h2>Hydration Tracker</h2>
+    <p>Track your daily water intake</p>
   </div>
 
-  <p style="text-align: center;">{{ cups }} cups today</p>
+  <ion-card class="tracker-card">
+    <ion-card-content>
 
-  <ion-button expand="block" (click)="save()">Save</ion-button>
+      <div class="cups-display">
+        <ion-button fill="outline" (click)="decrease()">-</ion-button>
+        <span class="cups-number">{{ cups }}</span>
+        <ion-button fill="outline" (click)="increase()">+</ion-button>
+      </div>
 
-  <p style="text-align: center;">{{ message }}</p>
+      <p class="cups-label">cups of water today</p>
 
-  <ion-card-title>Did you know?</ion-card-title>
-    <p>The recommended daily intake is around 8 cups of water.</p>
-    <p>Dehydration can cause headaches, fatigue and difficulty concentrating.</p>
-    <p>Around 60% of the human body is made up of water.</p>
-    <p>Tea and coffee count towards your fluid intake but water is best.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button class="save-button" expand="block" (click)="save()">Save</ion-button>
+
+  <ion-card class="tips-card">
+    <ion-card-header><ion-card-title>Did you know? 💧</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <p>The recommended daily intake is around 8 cups of water.</p>
+      <p>Dehydration can cause headaches, fatigue and difficulty concentrating.</p>
+      <p>Around 60% of the human body is made up of water.</p>
+      <p>Tea and coffee count towards your fluid intake but water is best.</p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

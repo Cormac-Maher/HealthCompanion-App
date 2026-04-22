@@ -11,25 +11,34 @@
 
 <ion-content class="ion-padding">
 
-  <h2>Did you exercise today?</h2>
+  <div class="page-header">
+    <h2>Exercise Tracker </h2>
+    <p>Log your daily activity</p>
+  </div>
 
-  <ion-item>
-    <ion-label>I exercised today</ion-label>
-    <ion-checkbox [checked]="exercised" (ionChange)="onCheckboxChange($event)"></ion-checkbox>
-  </ion-item>
-
-
-@if (exercised) {
-  <ion-item>
-    <ion-label>Type of exercise</ion-label>
-    <ion-select [(ngModel)]="exerciseType" placeholder="Select type">
-      <ion-select-option value="cardio">Cardio</ion-select-option>
-      <ion-select-option value="weightlifting">Weightlifting</ion-select-option>
-      <ion-select-option value="hiit">HIIT</ion-select-option>
-      <ion-select-option value="swimming">Swimming</ion-select-option>
-    </ion-select>
-  </ion-item>
-}
+<ion-card class="tracker-card">
+    <ion-card-content>
+      <div class="exercise-score-display">
+        <span class="exercise-number">{{ exerciseScore }}</span>
+        <span class="exercise-total">/ 5</span>
+      </div>
+      <ion-item>
+        <ion-label>I exercised today</ion-label>
+        <ion-checkbox [checked]="exercised" (ionChange)="onCheckboxChange($event)"></ion-checkbox>
+      </ion-item>
+      @if (exercised) {
+        <ion-item>
+          <ion-label>Type of exercise</ion-label>
+          <ion-select [(ngModel)]="exerciseType" placeholder="Select type">
+            <ion-select-option value="cardio">Cardio</ion-select-option>
+            <ion-select-option value="weightlifting">Weightlifting</ion-select-option>
+            <ion-select-option value="hiit">HIIT</ion-select-option>
+            <ion-select-option value="swimming">Swimming</ion-select-option>
+          </ion-select>
+        </ion-item>
+      }
+    </ion-card-content>
+  </ion-card>
 
   <p>Exercise score: {{ exerciseScore }} / 5</p>
 
@@ -37,10 +46,14 @@
 
   <p>{{ message }}</p>
 
-    <ion-card-title>Did you know?</ion-card-title>
-    <p>Its recommended to do at least 150 minutes of moderate exercise per week.</p>
-    <p>Strength training twice a week helps maintain muscle and bone health.</p>
-    <p>Even light activity like walking counts towards your daily movement.</p>
-    <p>Regular exercise can reduce the risk of heart disease by up to 35%.</p>
+  <ion-card class="tips-card">
+    <ion-card-header><ion-card-title>Did you know? 🏋️</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <p>It is recommended to get at least 150 minutes of moderate exercise per week.</p>
+      <p>Strength training twice a week helps maintain muscle and bone health.</p>
+      <p>Even light activity like walking counts towards your daily movement.</p>
+      <p>Regular exercise can reduce the risk of heart disease by up to 35%.</p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

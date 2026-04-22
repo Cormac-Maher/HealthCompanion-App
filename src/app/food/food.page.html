@@ -9,20 +9,35 @@
 
 <ion-content class="ion-padding">
 
-  <h2>How many of your 5 a day have you had?</h2>
+    <div class="page-header">
+    <h2>Diet Tracker</h2>
+    <p>Track your 5 a day</p>
+  </div>
 
-  <p>You have had {{ portions }} out of 5 today.</p>
+  <ion-card class="tracker-card">
+    <ion-card-content>
+      <div class="portion-display">
+        <span class="portion-number">{{ portions }}</span>
+        <span class="portion-total">/ 5</span>
+      </div>
+      <ion-item>
+        <ion-label>Portions</ion-label>
+        <ion-range [(ngModel)]="portions" min="0" max="5" step="1" snaps="true" pin="true"></ion-range>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-item>
-    <ion-label>Portions: {{ portions }}</ion-label>
-    <ion-range [(ngModel)]="portions" min="0" max="5" step="1" snaps="true" pin="true"></ion-range>
-  </ion-item>
+  <ion-button class="save-button" expand="block" (click)="save()">Save</ion-button>
 
-  <ion-button (click)="save()">Save</ion-button>
 
-  <ion-card-title>Did you know?</ion-card-title>
-    <p>A portion is roughly 80g of fruit or veg.</p>
-    <p>Frozen and tinned fruit and veg count towards your 5 a day.</p>
-    <p>Juice counts as only 1 portion no matter how much you drink.</p>
-    <p>Potatoes do not count towards your 5 a day.</p>
+  <ion-card class="tips-card">
+    <ion-card-header><ion-card-title>Did you know?</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <p>A portion is roughly 80g of fruit or veg.</p>
+      <p>Frozen and tinned fruit and veg count towards your 5 a day.</p>
+      <p>Juice counts as only 1 portion no matter how much you drink.</p>
+      <p>Potatoes do not count towards your 5 a day.</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
