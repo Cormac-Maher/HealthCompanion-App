@@ -16,7 +16,6 @@
 
   @if (history.length === 0) {
     <div class="empty-state">
-      <span class="empty-icon">📊</span>
       <p>No history yet.</p>
       <p>Save your score from the home page to get started.</p>
     </div>
@@ -33,5 +32,10 @@
       </div>
     }
   </div>
+
+  
+<div style="padding: 16px; text-align: center;">
+  <ion-button color="danger" (click)="resetHistory()">Reset History</ion-button>
+</div>
 
 </ion-content>

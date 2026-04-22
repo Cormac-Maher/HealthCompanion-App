@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { StorageService } from '../services/storage'
 
 @Component({
@@ -9,7 +9,7 @@ import { StorageService } from '../services/storage'
   templateUrl: './history.page.html',
   styleUrls: ['./history.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel, IonBackButton, IonButtons]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonButton]
 })
 export class HistoryPage implements OnInit {
 
@@ -30,6 +30,10 @@ export class HistoryPage implements OnInit {
     if (score >= 40) return '#ff6f00';
     return '#f32424';
   }
-  
+
+  async resetHistory() {
+  this.history = [];
+  await this.storageService.save('scoreHistory', []);
+}
 
 }

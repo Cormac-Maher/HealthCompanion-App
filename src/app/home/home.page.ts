@@ -121,23 +121,16 @@ async ngOnInit() {
     (this.fiveADay + this.sleepScore + this.moodScore + this.exerciseScore + this.hydrationScore) * 4;
   }
 
-async saveDaily() 
-{
+async saveDaily() {
   const history = await this.storageServices.load('scoreHistory') || [];
   const today = new Date().toLocaleDateString('en-IE');
-  const alreadySaved = history.some((entry: { date: string }) => entry.date === today);
+  const filtered = history.filter((entry: { date: string }) => entry.date !== today);
 
-  if (!alreadySaved) 
-  {
-    history.push({ date: today, score: this.overallScore });
-    if (history.length > 7) history.shift();
-    await this.storageServices.save('scoreHistory', history);
-  }
-  else
-  {
-    
-  }
+  filtered.push({ date: today, score: this.overallScore });
+  if (filtered.length > 7) filtered.shift();
+  await this.storageServices.save('scoreHistory', filtered);
 }
+
 
 goToHistory() {
   this.router.navigate(['/history']);
