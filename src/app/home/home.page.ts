@@ -10,10 +10,10 @@ import { NetworkService } from '../services/network';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
 })
 export class HomePage implements OnInit{
-  quote: string = 'Loading';
+quote: string = 'Loading';
 author: string = '';
 
   fiveADay: number = 0;
@@ -23,22 +23,23 @@ author: string = '';
   hydrationScore: number = 0;
   overallScore: number = 0;
 
-  constructor(private quoteServices: QuotesService, private networkService: NetworkService, private storageServices: StorageService, private router: Router) {}
+constructor(private quoteServices: QuotesService, private networkService: NetworkService, private storageServices: StorageService, private router: Router) {}
 
 async ngOnInit() {
   const online = await this.networkService.isOnline();
-  if (online) {
-    this.quoteServices.getQuote().subscribe((data: any) => {
-      this.quote = data.quote;
-      this.author = data.author;
-    });
-  } else {
+  if (online) 
+  {
+    this.quoteServices.getQuote().subscribe((data: any) => {this.quote = data.quote; this.author = data.author;});
+  } 
+  else 
+  {
     this.quote = 'No internet connection available.';
     this.author = '';
   }
 }
 
-  goTo(page: string) {
+  goTo(page: string) 
+  {
     this.router.navigate([page]);
   }
 
@@ -114,9 +115,32 @@ async ngOnInit() {
     }
 
 
-  calculateOverall() {
+  calculateOverall() 
+  {
     this.overallScore = 
     (this.fiveADay + this.sleepScore + this.moodScore + this.exerciseScore + this.hydrationScore) * 4;
   }
+
+async saveDaily() 
+{
+  const history = await this.storageServices.load('scoreHistory') || [];
+  const today = new Date().toLocaleDateString('en-IE');
+  const alreadySaved = history.some((entry: { date: string }) => entry.date === today);
+
+  if (!alreadySaved) 
+  {
+    history.push({ date: today, score: this.overallScore });
+    if (history.length > 7) history.shift();
+    await this.storageServices.save('scoreHistory', history);
+  }
+  else
+  {
+    
+  }
+}
+
+goToHistory() {
+  this.router.navigate(['/history']);
+}
 
 }

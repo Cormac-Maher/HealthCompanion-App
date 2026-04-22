@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Score History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="history-hero">
+    <h2>Last 7 Days</h2>
+    <p>Your daily health scores</p>
+  </div>
+
+  @if (history.length === 0) {
+    <div class="empty-state">
+      <span class="empty-icon">📊</span>
+      <p>No history yet.</p>
+      <p>Save your score from the home page to get started.</p>
+    </div>
+  }
+
+  <div class="history-list">
+    @for (entry of history; track entry.date) {
+      <div class="history-card">
+        <div class="history-date">{{ entry.date }}</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-fill" [style.width.%]="entry.score" [style.background]="getScoreColour(entry.score)"></div>
+        </div>
+        <div class="history-score" [style.color]="getScoreColour(entry.score)">{{ entry.score }}</div>
+      </div>
+    }
+  </div>
+
+</ion-content>

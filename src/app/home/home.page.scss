@@ -168,3 +168,10 @@
   font-weight: 400;
   color: #aaa;
 }
+
+.action-buttons {
+  padding: 0 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

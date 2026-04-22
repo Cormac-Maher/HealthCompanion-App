@@ -30,4 +30,8 @@ export const routes: Routes = [
     path: 'exercise',
     loadComponent: () => import('./exercise/exercise.page').then( m => m.ExercisePage)
   },
+  {
+    path: 'history',
+    loadComponent: () => import('./history/history.page').then( m => m.HistoryPage)
+  },
 ];

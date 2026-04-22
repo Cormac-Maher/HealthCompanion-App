@@ -1,0 +1,91 @@
+
+ion-toolbar {
+  --background: #1a73e8;
+  --color: white;
+}
+
+ion-back-button {
+  --color: white;
+}
+
+.history-hero {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  padding: 32px 20px 24px;
+  color: white;
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+
+  p {
+    margin: 0;
+    opacity: 0.85;
+    font-size: 0.95rem;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  color: #888;
+  text-align: center;
+
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+  }
+}
+
+.history-list {
+  padding: 20px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-card {
+  background: var(--ion-color-light);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.history-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ion-color-dark);
+  min-width: 85px;
+}
+
+.score-bar-wrap {
+  flex: 1;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.6s ease;
+}
+
+.history-score {
+  font-size: 1.2rem;
+  font-weight: 700;
+  min-width: 36px;
+  text-align: right;
+}
