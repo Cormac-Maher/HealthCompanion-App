@@ -21,25 +21,30 @@ export class ExercisePage implements OnInit {
 
   constructor(private storageService: StorageService, private router: Router) {}
 
-  async ngOnInit() {
+  async ngOnInit() 
+  {
     const savedExercised = await this.storageService.load('exercised');
     const savedType = await this.storageService.load('exerciseType');
 
-    if (savedExercised != null) {
+    if (savedExercised != null) 
+    {
       this.exercised = savedExercised;
       this.exerciseScore = this.exercised ? 5 : 0;
     }
-    if (savedType != null) {
+    if (savedType != null) 
+    {
       this.exerciseType = savedType;
     }
   }
 
-onCheckboxChange(event: any) {
+onCheckboxChange(event: any) 
+{
   this.exercised = event.detail.checked;
   this.exerciseScore = this.exercised ? 5 : 0;
 }
 
-  async save() {
+  async save() 
+  {
     await this.storageService.save('exercised', this.exercised);
     await this.storageService.save('exerciseType', this.exerciseType);
     await this.storageService.save('exerciseScore', this.exerciseScore);

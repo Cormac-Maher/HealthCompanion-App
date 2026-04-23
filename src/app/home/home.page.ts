@@ -6,6 +6,7 @@ import { StorageService } from '../services/storage';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { NetworkService } from '../services/network';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,8 +14,9 @@ import { NetworkService } from '../services/network';
   imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
 })
 export class HomePage implements OnInit{
-quote: string = 'Loading';
-author: string = '';
+
+  quote: string = 'Loading';
+  author: string = '';
 
   fiveADay: number = 0;
   sleepScore: number = 0;
@@ -25,25 +27,27 @@ author: string = '';
 
 constructor(private quoteServices: QuotesService, private networkService: NetworkService, private storageServices: StorageService, private router: Router) {}
 
-async ngOnInit() {
-  const online = await this.networkService.isOnline();
-  if (online) 
+  async ngOnInit() 
   {
-    this.quoteServices.getQuote().subscribe((data: any) => {this.quote = data.quote; this.author = data.author;});
-  } 
-  else 
-  {
-    this.quote = 'No internet connection available.';
-    this.author = '';
+    const online = await this.networkService.isOnline();
+    if (online) 
+    {
+      this.quoteServices.getQuote().subscribe((data: any) => {this.quote = data.quote; this.author = data.author;});
+    } 
+    else 
+    {
+      this.quote = 'No internet connection available.';
+      this.author = '';
+    }
   }
-}
 
   goTo(page: string) 
   {
     this.router.navigate([page]);
   }
 
-  async reset() {
+  async reset() 
+  {
     this.fiveADay = 0;
     this.sleepScore = 0;
     this.moodScore = 0;
@@ -59,12 +63,14 @@ async ngOnInit() {
     await this.storageServices.save('cups', 0);
   }
 
-    async ionViewWillEnter() {
-    const saved = await this.storageServices.load('fiveADay');
-    if (saved != null) {
-      this.fiveADay = saved;
-    }
-    const savedSleep = await this.storageServices.load('sleepHours');
+    async ionViewWillEnter() 
+    {
+      const saved = await this.storageServices.load('fiveADay');
+      if (saved != null) 
+      {
+        this.fiveADay = saved;
+      }
+      const savedSleep = await this.storageServices.load('sleepHours');
       if (savedSleep != null) 
         {
         if(savedSleep >= 8)
@@ -106,13 +112,14 @@ async ngOnInit() {
       this.calculateOverall();
     }
 
-    getScoreColour(): string {
-      if (this.overallScore >= 80) return '#0bdc1c';
-      if (this.overallScore >= 60) return '#f9ed3f';
-      if (this.overallScore >= 40) return '#ff6f00';
-      if (this.overallScore < 40) return '#f32424';
-      return '#c62828';
-    }
+  getScoreColour(): string 
+  {
+    if (this.overallScore >= 80) return '#0bdc1c';
+    if (this.overallScore >= 60) return '#f9ed3f';
+    if (this.overallScore >= 40) return '#ff6f00';
+    if (this.overallScore < 40) return '#f32424';
+    return '#c62828';
+  }
 
 
   calculateOverall() 
@@ -121,19 +128,21 @@ async ngOnInit() {
     (this.fiveADay + this.sleepScore + this.moodScore + this.exerciseScore + this.hydrationScore) * 4;
   }
 
-async saveDaily() {
-  const history = await this.storageServices.load('scoreHistory') || [];
-  const today = new Date().toLocaleDateString('en-IE');
-  const filtered = history.filter((entry: { date: string }) => entry.date !== today);
+  async saveDaily() 
+  {
+    const history = await this.storageServices.load('scoreHistory') || [];
+    const today = new Date().toLocaleDateString('en-IE');
+    const filtered = history.filter((entry: { date: string }) => entry.date !== today);
 
-  filtered.push({ date: today, score: this.overallScore });
-  if (filtered.length > 30) filtered.shift();
-  await this.storageServices.save('scoreHistory', filtered);
-}
+    filtered.push({ date: today, score: this.overallScore });
+    if (filtered.length > 30) filtered.shift();
+    await this.storageServices.save('scoreHistory', filtered);
+  }
 
 
-goToHistory() {
-  this.router.navigate(['/history']);
-}
+  goToHistory() 
+  {
+    this.router.navigate(['/history']);
+  }
 
 }

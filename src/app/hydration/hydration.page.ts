@@ -21,24 +21,30 @@ export class HydrationPage implements OnInit {
 
   constructor(private storageService: StorageService, private router: Router) {}
 
-  async ngOnInit() {
+  async ngOnInit() 
+  {
     const saved = await this.storageService.load('cups');
-    if (saved != null) {
+    if (saved != null) 
+    {
       this.cups = saved;
     }
   }
 
-  increase() {
+  increase() 
+  {
     this.cups++;
   }
 
-  decrease() {
-    if (this.cups > 0) {
+  decrease() 
+  {
+    if (this.cups > 0) 
+    {
       this.cups--;
     }
   }
 
-  async save() {
+  async save() 
+  {
     await this.storageService.save('cups', this.cups);
     this.router.navigate(['/home']);
   }

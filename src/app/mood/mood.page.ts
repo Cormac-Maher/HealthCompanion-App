@@ -18,14 +18,16 @@ export class MoodPage implements OnInit {
 
   constructor(private storageService: StorageService, private router: Router) {}
 
-  async ngOnInit() {
+  async ngOnInit() 
+  {
     const saved = await this.storageService.load('moodScore');
     if (saved != null) {
       this.moodScore = saved;
     }
   }
 
-  async save() {
+  async save() 
+  {
     await this.storageService.save('moodScore', this.moodScore);
     this.router.navigate(['/home']);
   }

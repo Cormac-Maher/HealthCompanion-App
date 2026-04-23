@@ -18,17 +18,20 @@ export class FoodPage implements OnInit {
 
   constructor(private storageService: StorageService, private router: Router) {}
 
-  async ngOnInit() {
+  async ngOnInit() 
+  {
     const saved = await this.storageService.load('fiveADay');
-    if (saved != null) {
+    if (saved != null) 
+    {
       this.portions = saved;
     }
   }
 
-  async save() {
+  async save() 
+  {
   await this.storageService.save('fiveADay', this.portions); 
   this.router.navigate(['/home']);
-}
+  }
 
 
 }

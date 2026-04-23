@@ -11,29 +11,34 @@ import { StorageService } from '../services/storage'
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonBackButton, IonButtons, IonButton]
 })
+
 export class HistoryPage implements OnInit {
 
   history: { date: string, score: number }[] = [];
 
   constructor(private storageService: StorageService) {}
 
-  async ngOnInit() {
+  async ngOnInit() 
+  {
     const saved = await this.storageService.load('scoreHistory');
-    if (saved != null) {
-      this.history = [...saved].reverse();
+    if (saved != null) 
+    {
+    this.history = [...saved].reverse();
     }
   }
 
-    getScoreColour(score: number): string {
+  getScoreColour(score: number): string 
+  {
     if (score >= 80) return '#0bdc1c';
     if (score >= 60) return '#f9ed3f';
     if (score >= 40) return '#ff6f00';
     return '#f32424';
   }
 
-  async resetHistory() {
+  async resetHistory() 
+  {
   this.history = [];
   await this.storageService.save('scoreHistory', []);
-}
+  }
 
 }

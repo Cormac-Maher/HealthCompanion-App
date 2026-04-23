@@ -19,14 +19,17 @@ export class SleepPage implements OnInit {
 
   constructor(private storageService: StorageService, private router: Router) {}
 
-  async ngOnInit() {
+  async ngOnInit() 
+  {
     const saved = await this.storageService.load('sleepHours');
-    if (saved != null) {
+    if (saved != null) 
+      {
       this.hours = saved;
     }
   }
 
-  async save() {
+  async save() 
+  {
     await this.storageService.save('sleepHours', this.hours);
     this.router.navigate(['/home']);
   }
