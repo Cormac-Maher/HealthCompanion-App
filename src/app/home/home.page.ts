@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonList, IonItem, IonBadge, IonLabel } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { QuotesService } from '../services/quotes';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../services/storage';
@@ -127,7 +127,7 @@ async saveDaily() {
   const filtered = history.filter((entry: { date: string }) => entry.date !== today);
 
   filtered.push({ date: today, score: this.overallScore });
-  if (filtered.length > 7) filtered.shift();
+  if (filtered.length > 30) filtered.shift();
   await this.storageServices.save('scoreHistory', filtered);
 }
 
