@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonRadio, IonButton, IonRadioGroup, IonButtons, IonBackButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonRadio, IonButton, IonRadioGroup, IonButtons, IonBackButton, IonCard, IonCardHeader, IonCardContent, IonCardTitle } from '@ionic/angular/standalone';
 import { StorageService } from '../services/storage';
 import { Router } from '@angular/router';
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './mood.page.html',
   styleUrls: ['./mood.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonRadio, IonButton, IonRadioGroup, IonButtons, IonBackButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonLabel, IonRadio, IonButton, IonRadioGroup, IonButtons, IonBackButton, IonCard, IonCardHeader, IonCardContent, IonCardTitle]
 })
 export class MoodPage implements OnInit {
 
