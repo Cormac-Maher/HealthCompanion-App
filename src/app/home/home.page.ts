@@ -6,12 +6,13 @@ import { StorageService } from '../services/storage';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { NetworkService } from '../services/network';
+import { AlertController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [DecimalPipe, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
+  imports: [DecimalPipe, CommonModule, IonHeader, IonContent, IonButton],
 })
 export class HomePage implements OnInit{
 
@@ -25,7 +26,7 @@ export class HomePage implements OnInit{
   hydrationScore: number = 0;
   overallScore: number = 0;
 
-constructor(private quoteServices: QuotesService, private networkService: NetworkService, private storageServices: StorageService, private router: Router) {}
+constructor(private quoteServices: QuotesService, private networkService: NetworkService, private storageServices: StorageService, private router: Router, private alertController: AlertController) {}
 
   async ngOnInit() 
   {
@@ -137,6 +138,17 @@ constructor(private quoteServices: QuotesService, private networkService: Networ
     filtered.push({ date: today, score: this.overallScore });
     if (filtered.length > 30) filtered.shift();
     await this.storageServices.save('scoreHistory', filtered);
+     
+    const alert = await this.alertController.create
+    ({
+      header: 'Score Saved!',
+      message: `You scored ${this.overallScore} out of 100 today. Great work!`,
+      buttons: ['OK']
+    });
+
+  await alert.present();
+
+
   }
 
 
